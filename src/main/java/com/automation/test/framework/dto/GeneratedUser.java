@@ -6,15 +6,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @EqualsAndHashCode
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GeneratedUser {
     @JsonProperty("@results")
-    private List<Results> results;
+    private Results[] results;
     @JsonProperty("@info")
     private Info info;
 }

@@ -13,8 +13,6 @@ import lombok.ToString;
 public class Info extends GeneratedUser {
     @JsonProperty("@seed")
     private String seed;
-    @JsonProperty("@results")
-    private String results;
     @JsonProperty("@page")
     private String page;
     @JsonProperty("@version")
