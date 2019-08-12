@@ -1,10 +1,10 @@
-package com.automation.test.framework.client;
+package com.automation.test.framework.api.client;
 
 import io.restassured.specification.RequestSpecification;
 
 import static com.automation.test.framework.Configs.ConfigConstants.API_URI;
 import static com.automation.test.framework.Configs.ConfigProvider.getConfiguration;
-import static utils.RestAssuredConfig.getHttpClient;
+import static com.automation.test.framework.api.utils.RestAssuredConfig.getHttpClient;
 
 public class BaseRestClient {
 

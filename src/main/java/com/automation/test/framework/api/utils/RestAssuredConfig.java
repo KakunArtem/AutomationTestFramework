@@ -1,4 +1,4 @@
-package utils;
+package com.automation.test.framework.api.utils;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;

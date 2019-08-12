@@ -1,4 +1,4 @@
-package com.automation.test.framework.dto;
+package com.automation.test.framework.api.dto;
 
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,9 +10,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Coordinates {
-    @JsonProperty("@latitude")
-    private String latitude;
-    @JsonProperty("@longitude")
-    private String longitude;
+public class Timezone {
+    @JsonProperty("@offset")
+    private String offset;
+    @JsonProperty("@description")
+    private String description;
+
 }

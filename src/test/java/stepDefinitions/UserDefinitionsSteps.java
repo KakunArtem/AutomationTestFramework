@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import com.automation.test.framework.client.UserCreationRestClient;
+import com.automation.test.framework.api.client.UserCreationRestClient;
 import cucumber.api.java.en.Given;
 import io.restassured.response.Response;
 import lombok.AllArgsConstructor;

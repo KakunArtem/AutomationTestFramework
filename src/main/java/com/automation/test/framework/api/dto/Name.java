@@ -1,4 +1,4 @@
-package com.automation.test.framework.dto;
+package com.automation.test.framework.api.dto;
 
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,9 +10,11 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GeneratedUser {
-    @JsonProperty("@results")
-    private Results[] results;
-    @JsonProperty("@info")
-    private Info info;
+public class Name {
+    @JsonProperty("@title")
+    private String title;
+    @JsonProperty("@first")
+    private String first;
+    @JsonProperty("@last")
+    private String last;
 }

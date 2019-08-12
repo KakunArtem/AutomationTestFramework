@@ -1,4 +1,4 @@
-package com.automation.test.framework.dto;
+package com.automation.test.framework.api.dto;
 
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.annotation.JsonProperty;

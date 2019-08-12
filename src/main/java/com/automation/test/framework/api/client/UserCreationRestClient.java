@@ -1,4 +1,4 @@
-package com.automation.test.framework.client;
+package com.automation.test.framework.api.client;
 
 import io.restassured.response.Response;
 
