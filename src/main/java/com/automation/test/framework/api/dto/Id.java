@@ -17,21 +17,15 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "seed",
-    "results",
-    "page",
-    "version"
+    "name",
+    "value"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Info {
-    @JsonProperty("seed")
-    private String seed;
-    @JsonProperty("results")
-    private Integer results;
-    @JsonProperty("page")
-    private Integer page;
-    @JsonProperty("version")
-    private String version;
+public class Id {
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("value")
+    private String value;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 }

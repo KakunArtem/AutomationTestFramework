@@ -11,7 +11,8 @@ public class RestAssuredConfig {
     public static RequestSpecification getHttpClient(){
         return given().spec(new RequestSpecBuilder()
                                 .addFilter(new ResponseLoggingFilter())
-                                .addFilter(new RequestLoggingFilter()).build());
+                                .addFilter(new RequestLoggingFilter())
+                                .build());
     }
 
 }

@@ -5,4 +5,5 @@ Feature: Create a random user, using https://randomuser.me/.
 
     @Avengers
     Scenario: Basic test for testing jUnit runner
-        Then  Transmit string 'avengers'
+#        Then  Transmit string 'avengers'
+        Given Create new user with parameters: 'gender,name,location,email,nat', 'pretty'

@@ -8,12 +8,11 @@ import static com.automation.test.framework.api.utils.RestAssuredConfig.getHttpC
 
 public class BaseRestClient {
 
-    private String getBaseUri(){
+    private String getBaseUri() {
         return getConfiguration().getString(API_URI);
     }
 
-    protected RequestSpecification getRequest(){
-        return getHttpClient().baseUri(API_URI);
+    protected RequestSpecification getRequest() {
+        return getHttpClient().baseUri(getBaseUri());
     }
-
 }
