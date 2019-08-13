@@ -20,7 +20,7 @@ public class CreateUserRestClient extends BaseRestClient {
         return getRequest().get();
     }
 
-    public Response getCustomUser(String params, String format){
+    public Response getDefaultTestUser(String params, String format){
         return getRequest().queryParam(INCLUDE_FIELDS_PARAM, params)
                            .queryParam(FORMAT_PARAM, format)
                            .get();

@@ -16,7 +16,7 @@ public class UserDefinitionsSteps {
 
     @Given("Create new user with parameters: '(.*)', '(.*)'")
     public void createUserWithParameters(String include, String format) {
-        Response response = createUserRestClient.getCustomUser(include,format);
+        Response response = createUserRestClient.getDefaultTestUser(include,format);
         GeneratedUser generatedUser = response.then().statusCode(200).extract().as(GeneratedUser.class);
 
         generatedUser.getResults().get(0).getLocation().getCity();
