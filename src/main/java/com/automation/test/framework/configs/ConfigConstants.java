@@ -1,4 +1,4 @@
-package com.automation.test.framework.Configs;
+package com.automation.test.framework.configs;
 
 public class ConfigConstants {
     public static final String API_URI = "apiURI";

@@ -30,6 +30,10 @@ public class CreateUserRestClient extends BaseRestClient {
         return getRequest().queryParam(INCLUDE_FIELDS_PARAM, fields).get();
     }
 
+    public Response getUserExcludeFields(String fields) {
+        return getRequest().queryParam(EXCLUDE_FIELDS_PARAM, fields).get();
+    }
+
     public Response getMultipleUsers(int users) {
         return getRequest().queryParam(MULTIPLE_USERS_PARAM, users).get();
     }
@@ -74,7 +78,5 @@ public class CreateUserRestClient extends BaseRestClient {
             return getRequest().queryParam(NATIONALITY_PARAM, nationality).get();
         }
     }
-
-
 
 }

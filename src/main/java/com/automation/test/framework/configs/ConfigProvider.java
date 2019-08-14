@@ -1,4 +1,4 @@
-package com.automation.test.framework.Configs;
+package com.automation.test.framework.configs;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationException;

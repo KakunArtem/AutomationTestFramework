@@ -32,8 +32,8 @@ public class Location {
     private String city;
     @JsonProperty("state")
     private String state;
-    @JsonProperty("postcode")
-    private Integer postcode;
+    @JsonProperty("coordinates")
+    private String postcode;
     @JsonProperty("coordinates")
     private Coordinates coordinates;
     @JsonProperty("timezone")

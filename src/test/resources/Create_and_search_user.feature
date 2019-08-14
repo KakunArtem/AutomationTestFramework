@@ -4,6 +4,7 @@ Feature: Create a random user, using https://randomuser.me/.
          Validate the Facebook has a profile for this person.
 
     @Avengers
-    Scenario: Basic test for testing jUnit runner
-#        Then  Transmit string 'avengers'
+    Scenario: Create a user and search him on Google.
+              Validate that the user has a Facebook page.
         Given Create new user with parameters: 'gender,name,location,email,nat', 'pretty'
+        Then Verify that created user has First name, Last name, location, email, nationality
