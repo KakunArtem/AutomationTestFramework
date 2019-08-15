@@ -6,6 +6,6 @@ Feature: Create a random user, using https://randomuser.me/.
     @Avengers
     Scenario: Create a user and search him on Google.
               Validate that the user has a Facebook page.
-        Given Create new user with parameters: 'gender,name,location,email,nat', 'pretty'
+        Given New user with parameters: 'gender,name,location,email,nat', 'pretty' was created
         Then Verify that created user has First name, Last name, location, email, nationality
         Then Go to 'https://www.google.com/' and search for user`s name and second name

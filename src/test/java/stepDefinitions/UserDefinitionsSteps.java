@@ -3,25 +3,25 @@ package stepDefinitions;
 import com.automation.test.framework.api.client.CreateUserRestClient;
 import com.automation.test.framework.api.dto.GeneratedUser;
 import com.automation.test.framework.api.testContext.TestSession;
-import com.automation.test.framework.web.driver.Driver;
 import com.automation.test.framework.web.pages.BasePage;
+import com.automation.test.framework.web.pages.SearchPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.response.Response;
-import lombok.AllArgsConstructor;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.automation.test.framework.api.testContext.Context.USER;
+import static com.automation.test.framework.web.driver.Driver.driver;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@AllArgsConstructor
 public class UserDefinitionsSteps {
-    private CreateUserRestClient createUserRestClient;
+    private CreateUserRestClient createUserRestClient = new CreateUserRestClient();
 
-    BasePage basePage = PageFactory.initElements(Driver.driver, BasePage.class);
+    BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+    SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
 
-    @Given("Create new user with parameters: '(.*)', '(.*)'")
+    @Given("New user with parameters: '(.*)', '(.*)' was created")
     public void createUserWithParameters(String include, String format) {
         Response response = createUserRestClient.getDefaultTestUser(include, format);
         TestSession.storeValue(USER, response);
@@ -45,5 +45,10 @@ public class UserDefinitionsSteps {
     @Then("Go to '(.*)' and search for user`s name and second name")
     public void goToSite(String site) throws InterruptedException {
         basePage.goToPage(site);
+        searchPage.searchSomething(" tako");
+
+
+
     }
+
 }

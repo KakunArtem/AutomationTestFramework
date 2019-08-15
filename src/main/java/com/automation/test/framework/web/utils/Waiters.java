@@ -40,15 +40,23 @@ public class Waiters {
                                        .ignoring(NoSuchElementException.class);
     }
 
+    public WebElement waitForElementToBeDisplayed(WebElement element){
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     public WebElement waitForElementToBeDisplayed(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public WebElement waitForElementToBeClickable(WebElement element){
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public WebElement waitForElementToBeClickable(By locator){
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public WebElement waitForPresenceOfElementLocated(By locator){
+    public WebElement waitForPresenceOfElement(By locator){
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }
