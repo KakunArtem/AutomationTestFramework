@@ -9,9 +9,7 @@ import static com.automation.test.framework.configs.ConfigProvider.getConfigurat
 
 public class Hook {
     private static Driver driver = new Driver();
-    private static String defaultBrowser = getConfiguration()
-        .getString(DEFAULT_BROWSER);
-
+    private static String defaultBrowser = getConfiguration().getString(DEFAULT_BROWSER);
 
     @Before
     public static void setup() {
@@ -24,5 +22,4 @@ public class Hook {
             Driver.driver.quit();
         }
     }
-
 }

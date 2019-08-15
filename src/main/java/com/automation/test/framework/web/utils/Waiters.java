@@ -1,7 +1,10 @@
 package com.automation.test.framework.web.utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
@@ -35,5 +38,17 @@ public class Waiters {
         return new FluentWait<>(driver).withTimeout(Duration.ofMillis(durationMills))
                                        .pollingEvery(Duration.ofMillis(poolingMills))
                                        .ignoring(NoSuchElementException.class);
+    }
+
+    public WebElement waitForElementToBeDisplayed(By locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public WebElement waitForElementToBeClickable(By locator){
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public WebElement waitForPresenceOfElementLocated(By locator){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }
