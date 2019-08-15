@@ -8,9 +8,7 @@ import static java.util.Optional.ofNullable;
 
 public class ConfigProvider {
     private static final String API_CONFIG_FILE = "apiConfig.properties";
-
     private static final String WEB_CONFIG_FILE = "webConfig.properties";
-
     private static ConfigProvider instance;
 
     private static CompositeConfiguration configuration;

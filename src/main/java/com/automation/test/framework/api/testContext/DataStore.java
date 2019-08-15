@@ -13,9 +13,8 @@ public class DataStore {
         return tClass.cast(map.get(key));
     }
 
-
     @Override
     public String toString() {
-        return "DataStore{" + "map=" + map + '}';
+        return "DataStore{" + "map=" + map + "}";
     }
 }
