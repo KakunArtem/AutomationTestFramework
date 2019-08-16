@@ -5,7 +5,8 @@ import com.automation.test.framework.api.dto.Name;
 import io.restassured.response.Response;
 
 public class TestSession {
-    private static ThreadLocal<DataStore> dataStore = InheritableThreadLocal.withInitial(DataStore::new);
+    private static ThreadLocal<DataStore> dataStore =
+                    InheritableThreadLocal.withInitial(DataStore::new);
 
     private TestSession() {
     }
@@ -27,13 +28,12 @@ public class TestSession {
     }
 
     public static void storeUserFullName(Context userFromDataStore, Context newDataStore) {
-        GeneratedUser generatedUser = TestSession.getValueFromSession(userFromDataStore, Response.class)
+        GeneratedUser generatedUser =
+            TestSession.getValueFromSession(userFromDataStore, Response.class)
                                                  .then().extract().as(GeneratedUser.class);
 
         Name getName = generatedUser.getResults().get(0).getName();
-
         String fullName = getName.getFirst() + " " + getName.getLast();
-
         storeValue(newDataStore, fullName);
     }
 }

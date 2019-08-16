@@ -4,5 +4,5 @@ public enum Context {
     USER,
     USER_FULL_NAME,
     USER_FIRST_NAME,
-    USER_LAST_NAME
+    USER_LAST_NAME;
 }

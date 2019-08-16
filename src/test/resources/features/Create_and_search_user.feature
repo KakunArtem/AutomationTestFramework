@@ -8,4 +8,5 @@ Feature: Create a random user, using https://randomuser.me/.
               Validate that the user has a Facebook page.
         Given New user with parameters: 'gender,name,location,email,nat', 'pretty' was created
         Then Verify that created user has First name, Last name, location, email, nationality
-        Then Go to 'https://www.google.com/' and search for user`s name and second name
+        Then Go to site: 'https://www.google.com/'
+        And Search for user`s full name

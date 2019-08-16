@@ -5,6 +5,7 @@ import com.automation.test.framework.api.dto.GeneratedUser;
 import com.automation.test.framework.api.testContext.TestSession;
 import com.automation.test.framework.web.pages.BasePage;
 import com.automation.test.framework.web.pages.SearchPage;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.response.Response;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static com.automation.test.framework.api.testContext.Context.USER;
 import static com.automation.test.framework.api.testContext.Context.USER_FULL_NAME;
+import static com.automation.test.framework.api.testContext.TestSession.getValueFromSession;
 import static com.automation.test.framework.web.driver.Driver.driver;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +33,7 @@ public class UserDefinitionsSteps {
 
     @Then("Verify that created user has First name, Last name, location, email, nationality")
     public void verifyThatCreatedUserHasFirstNameLastNameLocationEmailNationality() {
-        GeneratedUser generatedUser = TestSession.getValueFromSession(USER, Response.class).then()
+        GeneratedUser generatedUser = getValueFromSession(USER, Response.class).then()
                                                  .statusCode(SC_OK)
                                                  .extract().as(GeneratedUser.class);
 
@@ -43,13 +45,15 @@ public class UserDefinitionsSteps {
         assertThat(generatedUser.getResults().get(0).getNat()).isNotEmpty();
     }
 
-    @Then("Go to '(.*)' and search for user`s name and second name")
-    public void goToSite(String site) throws InterruptedException {
+    @Then("Go to site: '(.*)'")
+    public void goToSite(String site) {
         basePage.goToPage(site);
-        searchPage.makeSearchRequest(USER_FULL_NAME.toString());
+    }
 
 
-
+    @And("Search for user`s full name")
+    public void searchForUserSFullName() {
+        searchPage.makeSearchRequest(getValueFromSession(USER_FULL_NAME));
     }
 
 }

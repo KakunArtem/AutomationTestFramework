@@ -14,9 +14,13 @@ import static com.automation.test.framework.web.driver.Driver.driver;
 public class BasePage {
     Waiters waiter = new Waiters(driver);
 
-    public void goToPage(String page) throws InterruptedException {
-        driver.get(page);
-        TimeUnit.SECONDS.sleep(10);
+    public void goToPage(String page) {
+        try {
+            driver.get(page);
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Exception: " + e.getMessage());
+        }
     }
 
     public WebElement findElement(By by) {
@@ -39,7 +43,7 @@ public class BasePage {
         try {
             waiter.waitForElementToBeDisplayed(locator).click();
         } catch (WebDriverException e) {
-            throw new RuntimeException("Element not found " + e.getMessage());
+            throw new RuntimeException("Element not found: " + e.getMessage());
         }
     }
 
