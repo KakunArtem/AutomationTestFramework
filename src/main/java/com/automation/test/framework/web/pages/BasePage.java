@@ -2,10 +2,12 @@ package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.utils.Waiters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import static com.automation.test.framework.web.driver.Driver.actions;
@@ -15,12 +17,7 @@ public class BasePage {
     Waiters waiter = new Waiters(driver);
 
     public void goToPage(String page) {
-        try {
-            driver.get(page);
-            TimeUnit.SECONDS.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException("Exception: " + e.getMessage());
-        }
+        driver.get(page);
     }
 
     public WebElement findElement(By by) {
@@ -35,7 +32,7 @@ public class BasePage {
         try {
             waiter.waitForElementToBeClickable(element).click();
         } catch (WebDriverException e) {
-            actions.moveToElement(element).click().build().perform();
+            actions.click(element).build().perform();
         }
     }
 
@@ -47,10 +44,46 @@ public class BasePage {
         }
     }
 
+    public boolean elementIsDisplayed(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean elementIsDisplayed(By locator) {
+        try {
+            return findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean elementIsEnabled(WebElement element) {
+        try {
+            return element.isEnabled();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean elementIsEnabled(By locator) {
+        try {
+            return findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
     public void enterText(WebElement element, String text) {
         waiter.waitForElementToBeClickable(element);
         element.clear();
         element.click();
         element.sendKeys(text);
+    }
+
+    public void pressENTER(By locator) {
+        driver.findElement(locator).sendKeys(Keys.ENTER);
     }
 }

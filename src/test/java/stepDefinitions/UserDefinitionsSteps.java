@@ -53,7 +53,8 @@ public class UserDefinitionsSteps {
 
     @And("Search for user`s full name")
     public void searchForUserSFullName() {
-        searchPage.makeSearchRequest(getValueFromSession(USER_FULL_NAME));
+//        searchPage.makeSearchRequest(getValueFromSession(USER_FULL_NAME));
+        searchPage.makeSearchRequest("serpil dietz");
     }
 
 }
