@@ -11,10 +11,9 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//div[3]/center/input[1]")
     private WebElement searchButton;
 
-    public void searchSomething(String text){
+    public void makeSearchRequest(String text){
         waiter.waitForElementToBeDisplayed(inputTextBar);
         enterText(inputTextBar, text);
-        waiter.waitForElementToBeDisplayed(searchButton);
         clickOnElement(searchButton);
     }
 

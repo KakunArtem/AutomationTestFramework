@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Waiters {
     private static final int WAIT_MILLS = 10000;
@@ -47,6 +48,11 @@ public class Waiters {
     public WebElement waitForElementToBeDisplayed(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    public List<WebElement> waitForElementsToBeDisplayed(List<WebElement> elements){
+        return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+    }
+
 
     public WebElement waitForElementToBeClickable(WebElement element){
         return wait.until(ExpectedConditions.elementToBeClickable(element));

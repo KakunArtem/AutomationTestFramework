@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.automation.test.framework.web.driver.Driver.actions;
 import static com.automation.test.framework.web.driver.Driver.driver;
 
 public class BasePage {
@@ -28,19 +29,17 @@ public class BasePage {
 
     public void clickOnElement(WebElement element) {
         try {
-            waiter.waitForElementToBeDisplayed(element)
-                  .click();
+            waiter.waitForElementToBeClickable(element).click();
         } catch (WebDriverException e) {
-            throw new RuntimeException("Element not found" + e.getMessage());
+            actions.moveToElement(element).click().build().perform();
         }
     }
 
-    public void clickOnElement(By locator){
-        try{
-            waiter.waitForElementToBeDisplayed(locator)
-                  .click();
-        }catch (WebDriverException e){
-            throw new RuntimeException("Element not found" + e.getMessage());
+    public void clickOnElement(By locator) {
+        try {
+            waiter.waitForElementToBeDisplayed(locator).click();
+        } catch (WebDriverException e) {
+            throw new RuntimeException("Element not found " + e.getMessage());
         }
     }
 

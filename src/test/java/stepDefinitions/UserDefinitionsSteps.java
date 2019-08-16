@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import com.automation.test.framework.api.client.CreateUserRestClient;
+import com.automation.test.framework.api.client.UserRestClient;
 import com.automation.test.framework.api.dto.GeneratedUser;
 import com.automation.test.framework.api.testContext.TestSession;
 import com.automation.test.framework.web.pages.BasePage;
@@ -11,28 +11,29 @@ import io.restassured.response.Response;
 import org.openqa.selenium.support.PageFactory;
 
 import static com.automation.test.framework.api.testContext.Context.USER;
+import static com.automation.test.framework.api.testContext.Context.USER_FULL_NAME;
 import static com.automation.test.framework.web.driver.Driver.driver;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserDefinitionsSteps {
-    private CreateUserRestClient createUserRestClient = new CreateUserRestClient();
+    private UserRestClient userRestClient = new UserRestClient();
 
     BasePage basePage = PageFactory.initElements(driver, BasePage.class);
     SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
 
     @Given("New user with parameters: '(.*)', '(.*)' was created")
     public void createUserWithParameters(String include, String format) {
-        Response response = createUserRestClient.getDefaultTestUser(include, format);
+        Response response = userRestClient.getDefaultTestUser(include, format);
         TestSession.storeValue(USER, response);
+        TestSession.storeUserFullName(USER, USER_FULL_NAME);
     }
 
     @Then("Verify that created user has First name, Last name, location, email, nationality")
     public void verifyThatCreatedUserHasFirstNameLastNameLocationEmailNationality() {
-        GeneratedUser generatedUser =
-            TestSession.getValueFromSession(USER, Response.class).then()
-                       .statusCode(SC_OK)
-                       .extract().as(GeneratedUser.class);
+        GeneratedUser generatedUser = TestSession.getValueFromSession(USER, Response.class).then()
+                                                 .statusCode(SC_OK)
+                                                 .extract().as(GeneratedUser.class);
 
         assertThat(generatedUser.getResults().get(0)).isNotNull();
         assertThat(generatedUser.getResults().get(0).getLocation()).isNotNull();
@@ -45,7 +46,7 @@ public class UserDefinitionsSteps {
     @Then("Go to '(.*)' and search for user`s name and second name")
     public void goToSite(String site) throws InterruptedException {
         basePage.goToPage(site);
-        searchPage.searchSomething(" tako");
+        searchPage.makeSearchRequest(USER_FULL_NAME.toString());
 
 
 

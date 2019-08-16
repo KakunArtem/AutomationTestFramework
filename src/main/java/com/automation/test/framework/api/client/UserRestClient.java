@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class CreateUserRestClient extends BaseRestClient {
+public class UserRestClient extends BaseRestClient {
     private static final String INCLUDE_FIELDS_PARAM = "inc";
     private static final String EXCLUDE_FIELDS_PARAM = "exc";
     private static final String MULTIPLE_USERS_PARAM = "results";

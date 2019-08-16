@@ -5,20 +5,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
-import static com.automation.test.framework.configs.ConfigConstants.WEB_HOST;
-
 public class Driver {
-    private static final String host = WEB_HOST;
-
     public static WebDriver driver;
+    public static Actions actions;
 
     public void initializeDriver(String driverType) {
         if (driver != null) {
             return;
         }
         getDriver(driverType);
+    }
+
+    public void initializeActions(){
+        if(actions == null){
+            actions = new Actions(driver);
+        }
     }
 
     private WebDriver setupFirefox() {

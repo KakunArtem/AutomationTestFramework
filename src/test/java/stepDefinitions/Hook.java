@@ -14,6 +14,7 @@ public class Hook {
     @Before
     public static void setup() {
         driver.initializeDriver(defaultBrowser);
+        driver.initializeActions();
     }
 
     @After
