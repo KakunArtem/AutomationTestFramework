@@ -17,8 +17,8 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "latitude",
-    "longitude"
+        "latitude",
+        "longitude"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Coordinates {

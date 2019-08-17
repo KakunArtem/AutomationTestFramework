@@ -18,8 +18,8 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "results",
-    "info"
+        "results",
+        "info"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GeneratedUser {

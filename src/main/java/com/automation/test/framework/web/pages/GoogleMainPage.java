@@ -4,10 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
-public class SearchPage extends BasePage {
-    private static By inputTextBarSelector = By.cssSelector("input[class='gLFyf gsfi']");
+public class GoogleMainPage extends BasePage {
+    private List<WebElement> webElementsList = new ArrayList<>();
+
+    private By inputTextBarSelector = By.cssSelector("input[class='gLFyf gsfi']");
+
     @FindBy(css = "input[class='gLFyf gsfi']")
     private WebElement inputTextBar;
 
@@ -20,27 +24,25 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//div[@jscontroller='tg8oTe']")
     private WebElement suggestionDropdown;
 
-    @FindBy(css ="div[class='aajZCb']")
+    @FindBy(css = "div[class='aajZCb']")
     private WebElement smallSuggestionDropdown;
 
     public void makeSearchRequest(String text) {
-        try {
-            waiter.waitForElementToBeDisplayed(inputTextBar);
-            enterText(inputTextBar, text);
-            if (elementIsDisplayed(suggestionDropdown)||elementIsDisplayed(smallSuggestionDropdown)) {
-                pressENTER(inputTextBarSelector);
-            } else
-                clickOnElement(searchButton);
-            TimeUnit.SECONDS.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException("Exception: " + e.getMessage());
-        }
+        waiter.waitForElementToBeDisplayed(inputTextBar);
+        enterText(inputTextBar, text);
+        if (elementIsDisplayed(suggestionDropdown) || elementIsDisplayed(smallSuggestionDropdown)) {
+            pressENTERButton(inputTextBarSelector);
+        } else
+            clickOnElement(searchButton);
+        waiter.sleep(10);
     }
 
-//    We don`t check button in the test. So the simple version of the method can be applied.
+//    We don`t check button work in the test. So the simple version of the method can be applied.
 //    public void makeSearchRequest(String text){
 //        waiter.waitForElementToBeDisplayed(inputTextBar);
 //        enterText(inputTextBar,text);
 //        pressENTER(inputTextBarSelector);
 //    }
+
+
 }

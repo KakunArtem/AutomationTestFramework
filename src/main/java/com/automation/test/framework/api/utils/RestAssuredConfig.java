@@ -8,11 +8,11 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 
 public class RestAssuredConfig {
-    public static RequestSpecification getHttpClient(){
+    public static RequestSpecification getHttpClient() {
         return given().spec(new RequestSpecBuilder()
-                                .addFilter(new ResponseLoggingFilter())
-                                .addFilter(new RequestLoggingFilter())
-                                .build());
+                .addFilter(new ResponseLoggingFilter())
+                .addFilter(new RequestLoggingFilter())
+                .build());
     }
 
 }

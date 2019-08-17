@@ -4,7 +4,8 @@ import com.automation.test.framework.api.client.UserRestClient;
 import com.automation.test.framework.api.dto.GeneratedUser;
 import com.automation.test.framework.api.testContext.TestSession;
 import com.automation.test.framework.web.pages.BasePage;
-import com.automation.test.framework.web.pages.SearchPage;
+import com.automation.test.framework.web.pages.GoogleMainPage;
+import com.automation.test.framework.web.pages.GoogleResultsPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,7 +23,8 @@ public class UserDefinitionsSteps {
     private UserRestClient userRestClient = new UserRestClient();
 
     BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-    SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
+    GoogleMainPage googleMainPage = PageFactory.initElements(driver, GoogleMainPage.class);
+    GoogleResultsPage googleResultsPage = PageFactory.initElements(driver, GoogleResultsPage.class);
 
     @Given("New user with parameters: '(.*)', '(.*)' was created")
     public void createUserWithParameters(String include, String format) {
@@ -52,9 +54,11 @@ public class UserDefinitionsSteps {
 
 
     @And("Search for user`s full name")
-    public void searchForUserSFullName() {
-//        searchPage.makeSearchRequest(getValueFromSession(USER_FULL_NAME));
-        searchPage.makeSearchRequest("serpil dietz");
+    public void searchForUsersFullName() {
+//        googleMainPage.makeSearchRequest(getValueFromSession(USER_FULL_NAME));
+        googleMainPage.makeSearchRequest("jenny powell");
+        googleResultsPage.goToPageFromResults("Facebook.com");
+
     }
 
 }

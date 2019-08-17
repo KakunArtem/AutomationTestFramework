@@ -12,7 +12,7 @@ public class UserRestClient extends BaseRestClient {
     private static final String MULTIPLE_USERS_PARAM = "results";
     private static final String CERTAIN_GENDER_USER_PARAM = "gender";
     private static final String PASSWORD_PARAM = "password";
-    private static final String SEEDS_PARAM = "password";
+    private static final String SEEDS_PARAM = "seed";
     private static final String FORMAT_PARAM = "format";
     private static final String NATIONALITY_PARAM = "format";
 
@@ -20,10 +20,10 @@ public class UserRestClient extends BaseRestClient {
         return getRequest().get();
     }
 
-    public Response getDefaultTestUser(String params, String format){
+    public Response getDefaultTestUser(String params, String format) {
         return getRequest().queryParam(INCLUDE_FIELDS_PARAM, params)
-                           .queryParam(FORMAT_PARAM, format)
-                           .get();
+                .queryParam(FORMAT_PARAM, format)
+                .get();
     }
 
     public Response getUserIncludeFields(String fields) {
@@ -52,11 +52,11 @@ public class UserRestClient extends BaseRestClient {
 
     public Response getUserInFormat(String format) {
         List<String> availableFormats = Arrays.asList(
-            "json", "PrettyJSON", "Pretty",
-            "CSV", "YAML", "XML");
+                "json", "PrettyJSON", "Pretty",
+                "CSV", "YAML", "XML");
 
         Boolean formatIsPresent = availableFormats.stream()
-                                                  .anyMatch(n -> n.equalsIgnoreCase(format));
+                .anyMatch(n -> n.equalsIgnoreCase(format));
         if (!formatIsPresent) {
             throw new NoSuchElementException("This format is not supported.");
         } else {
@@ -66,12 +66,12 @@ public class UserRestClient extends BaseRestClient {
 
     public Response getUserWithNationality(String nationality) {
         List<String> availableNationalities = Arrays.asList(
-            "AU", "BR", "CA", "CH", "DE", "DK",
-            "ES", "FI", "FR", "GB", "IE", "IR",
-            "NO", "NL", "NZ", "TR", "US");
+                "AU", "BR", "CA", "CH", "DE", "DK",
+                "ES", "FI", "FR", "GB", "IE", "IR",
+                "NO", "NL", "NZ", "TR", "US");
 
         Boolean nationalityIsPresent = availableNationalities.stream()
-                                                             .anyMatch(n -> n.equalsIgnoreCase(nationality));
+                .anyMatch(n -> n.equalsIgnoreCase(nationality));
         if (!nationalityIsPresent) {
             throw new NoSuchElementException("This nationality is not supported.");
         } else {

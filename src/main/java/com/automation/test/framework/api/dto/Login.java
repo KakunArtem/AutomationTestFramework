@@ -17,13 +17,13 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "uuid",
-    "username",
-    "password",
-    "salt",
-    "md5",
-    "sha1",
-    "sha256"
+        "uuid",
+        "username",
+        "password",
+        "salt",
+        "md5",
+        "sha1",
+        "sha256"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Login {

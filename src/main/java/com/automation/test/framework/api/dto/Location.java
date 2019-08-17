@@ -17,12 +17,12 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "street",
-    "city",
-    "state",
-    "postcode",
-    "coordinates",
-    "timezone"
+        "street",
+        "city",
+        "state",
+        "postcode",
+        "coordinates",
+        "timezone"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {

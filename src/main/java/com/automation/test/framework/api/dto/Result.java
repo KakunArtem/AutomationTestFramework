@@ -17,18 +17,18 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "gender",
-    "name",
-    "location",
-    "email",
-    "login",
-    "dob",
-    "registered",
-    "phone",
-    "cell",
-    "id",
-    "picture",
-    "nat"
+        "gender",
+        "name",
+        "location",
+        "email",
+        "login",
+        "dob",
+        "registered",
+        "phone",
+        "cell",
+        "id",
+        "picture",
+        "nat"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Result {

@@ -19,8 +19,8 @@ public class Driver {
         getDriver(driverType);
     }
 
-    public void initializeActions(){
-        if(actions == null){
+    public void initializeActions() {
+        if (actions == null) {
             actions = new Actions(driver);
         }
     }

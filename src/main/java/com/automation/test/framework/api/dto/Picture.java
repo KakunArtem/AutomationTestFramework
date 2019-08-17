@@ -17,9 +17,9 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "large",
-    "medium",
-    "thumbnail"
+        "large",
+        "medium",
+        "thumbnail"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Picture {

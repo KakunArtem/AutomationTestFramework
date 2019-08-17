@@ -17,8 +17,8 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "offset",
-    "description"
+        "offset",
+        "description"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Timezone {

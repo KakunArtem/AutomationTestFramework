@@ -36,6 +36,6 @@ public class ConfigProvider {
 
     public String getString(String key) {
         return ofNullable(configuration.getString(key))
-            .orElseThrow(() -> new RuntimeException(String.format("%s property is not found", key)));
+                .orElseThrow(() -> new RuntimeException(String.format("%s property is not found", key)));
     }
 }

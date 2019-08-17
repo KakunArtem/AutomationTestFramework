@@ -17,9 +17,9 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "title",
-    "first",
-    "last"
+        "title",
+        "first",
+        "last"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Name {

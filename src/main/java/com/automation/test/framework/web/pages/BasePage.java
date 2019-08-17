@@ -1,14 +1,13 @@
 package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static com.automation.test.framework.web.driver.Driver.actions;
 import static com.automation.test.framework.web.driver.Driver.driver;
@@ -32,15 +31,23 @@ public class BasePage {
         try {
             waiter.waitForElementToBeClickable(element).click();
         } catch (WebDriverException e) {
-            actions.click(element).build().perform();
+            clickUsingActions(element);
         }
     }
 
     public void clickOnElement(By locator) {
         try {
-            waiter.waitForElementToBeDisplayed(locator).click();
+            waiter.waitForElementToBeClickable(locator).click();
         } catch (WebDriverException e) {
-            throw new RuntimeException("Element not found: " + e.getMessage());
+            clickUsingActions(findElement(locator));
+        }
+    }
+
+    public void clickUsingActions(WebElement element) {
+        try {
+            actions.click(element).build().perform();
+        } catch (WebDriverException e) {
+            throw new RuntimeException("Can't click on element: " + element);
         }
     }
 
@@ -83,7 +90,19 @@ public class BasePage {
         element.sendKeys(text);
     }
 
-    public void pressENTER(By locator) {
+    public void storeElementsToList(By locator, List<WebElement> elements) {
+        elements.addAll(findElements(locator));
+    }
+
+    public WebElement getMatchedElement(List<WebElement> elements, String match) {
+        return elements
+                .stream()
+                .filter(n -> n.getText().toLowerCase().contains(match.toLowerCase()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("No matching element!"));
+    }
+
+    public void pressENTERButton(By locator) {
         driver.findElement(locator).sendKeys(Keys.ENTER);
     }
 }

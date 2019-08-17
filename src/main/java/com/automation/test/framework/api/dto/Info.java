@@ -17,10 +17,10 @@ import java.util.Map;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "seed",
-    "results",
-    "page",
-    "version"
+        "seed",
+        "results",
+        "page",
+        "version"
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Info {
