@@ -15,9 +15,8 @@ public class GoogleResultsPage extends BasePage {
         try {
             storeElementsToList(searchResultLinks, webElementsList);
             clickOnElement(getMatchedElement(webElementsList, pageName));
-            waiter.sleep(10);
         } catch (RuntimeException exception) {
-            throw new RuntimeException(pageName + " is missing in a results. " + exception.getMessage());
+            throw new RuntimeException(pageName + " is missing in the results. " + exception.getMessage());
         }
     }
 }

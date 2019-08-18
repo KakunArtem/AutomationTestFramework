@@ -27,13 +27,4 @@ public class TestSession {
         return getDataStore().get(key, String.class);
     }
 
-    public static void storeUserFullName(Context userFromDataStore, Context newDataStore) {
-        GeneratedUser generatedUser =
-                TestSession.getValueFromSession(userFromDataStore, Response.class)
-                        .then().extract().as(GeneratedUser.class);
-
-        Name getName = generatedUser.getResults().get(0).getName();
-        String fullName = getName.getFirst() + " " + getName.getLast();
-        storeValue(newDataStore, fullName);
-    }
 }

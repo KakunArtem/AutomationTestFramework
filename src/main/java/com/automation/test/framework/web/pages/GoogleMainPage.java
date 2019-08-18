@@ -34,15 +34,14 @@ public class GoogleMainPage extends BasePage {
             pressENTERButton(inputTextBarSelector);
         } else
             clickOnElement(searchButton);
-        waiter.sleep(10);
     }
 
 //    We don`t check button work in the test. So the simple version of the method can be applied.
-//    public void makeSearchRequest(String text){
-//        waiter.waitForElementToBeDisplayed(inputTextBar);
-//        enterText(inputTextBar,text);
-//        pressENTER(inputTextBarSelector);
-//    }
+    public void makeSearchRequestSimplified(String text){
+        waiter.waitForElementToBeDisplayed(inputTextBar);
+        enterText(inputTextBar,text);
+        pressENTERButton(inputTextBarSelector);
+    }
 
 
 }

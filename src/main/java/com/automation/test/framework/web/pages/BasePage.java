@@ -3,14 +3,12 @@ package com.automation.test.framework.web.pages;
 import com.automation.test.framework.web.utils.Waiters;
 import org.openqa.selenium.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static com.automation.test.framework.web.driver.Driver.actions;
 import static com.automation.test.framework.web.driver.Driver.driver;
+import static org.junit.Assert.assertTrue;
 
 public class BasePage {
     Waiters waiter = new Waiters(driver);
@@ -105,4 +103,35 @@ public class BasePage {
     public void pressENTERButton(By locator) {
         driver.findElement(locator).sendKeys(Keys.ENTER);
     }
+
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void assertCurrentUrl(String url) {
+        try {
+            assertTrue(getCurrentUrl().toLowerCase().contains(url.toLowerCase()));
+        } catch (AssertionError e) {
+            throw new RuntimeException("Current url does not contains in url: " + url);
+        }
+    }
+
+    public void assertTextOnWebElement(WebElement element, String expectedText) {
+        try {
+            String actualText = element.getText();
+            assertTrue(actualText.toLowerCase().contains(expectedText.toLowerCase()));
+        } catch (AssertionError e) {
+            throw new RuntimeException(element + " does not contains text: " + expectedText);
+        }
+    }
+
+    public void assertPageContainsText(String text) {
+        try {
+            assertTrue(driver.getPageSource().toLowerCase().contains(text.toLowerCase()));
+        } catch (AssertionError e) {
+            throw new RuntimeException("Page does not contains text:" + text);
+        }
+    }
+
+
 }
