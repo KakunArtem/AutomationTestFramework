@@ -1,9 +1,5 @@
 package com.automation.test.framework.api.testContext;
 
-import com.automation.test.framework.api.dto.GeneratedUser;
-import com.automation.test.framework.api.dto.Name;
-import io.restassured.response.Response;
-
 public class TestSession {
     private static ThreadLocal<DataStore> dataStore =
             InheritableThreadLocal.withInitial(DataStore::new);
