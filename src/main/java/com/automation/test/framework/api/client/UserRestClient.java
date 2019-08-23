@@ -14,7 +14,7 @@ public class UserRestClient extends BaseRestClient {
     private static final String PASSWORD_PARAM = "password";
     private static final String SEEDS_PARAM = "seed";
     private static final String FORMAT_PARAM = "format";
-    private static final String NATIONALITY_PARAM = "format";
+    private static final String NATIONALITY_PARAM = "nat";
 
     public Response getDefaultUser() {
         return getRequest().get();

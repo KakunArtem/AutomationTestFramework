@@ -1,46 +1,41 @@
 package com.automation.test.framework.api.service;
 
 import com.automation.test.framework.api.client.UserRestClient;
-import com.automation.test.framework.api.dto.GeneratedUser;
-import com.automation.test.framework.api.dto.Name;
 import com.automation.test.framework.api.testContext.Context;
+import com.automation.test.framework.api.utils.DataStoreUtils;
 import io.restassured.response.Response;
 
-import static com.automation.test.framework.api.testContext.Context.USER;
-import static com.automation.test.framework.api.testContext.Context.USER_FULL_NAME;
-import static com.automation.test.framework.api.testContext.TestSession.getValueFromSession;
 import static com.automation.test.framework.api.testContext.TestSession.storeValue;
-import static org.apache.http.HttpStatus.SC_OK;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserService {
+    private static final String FIRST_NAME_FIELD = "first";
+    private static final String LAST_NAME_FIELD = "last";
+
     private UserRestClient userRestClient = new UserRestClient();
+    private DataStoreUtils dataStoreUtils = new DataStoreUtils();
 
-    public static void storeUserFullName(Context userFromDataStore, Context newDataStore) {
-        GeneratedUser generatedUser = getValueFromSession(userFromDataStore, Response.class)
-                .then().extract().as(GeneratedUser.class);
+    public void storeUserFullName(Context userFromDataStore, Context newDataStore) {
+        String fullName =
+            new StringBuilder().append(dataStoreUtils.getFieldValueAsString(userFromDataStore, FIRST_NAME_FIELD))
+                               .append(" ")
+                               .append(dataStoreUtils.getFieldValueAsString(userFromDataStore, LAST_NAME_FIELD))
+                               .toString();
 
-        Name getName = generatedUser.getResults().get(0).getName();
-        String fullName = getName.getFirst() + " " + getName.getLast();
         storeValue(newDataStore, fullName);
     }
 
-    public void createAndStoreDefaultTestUser(String parameters, String format) {
+    public void createAndStoreDefaultTestUser(Context dataStore, String parameters, String format) {
         Response response = userRestClient.getDefaultTestUser(parameters, format);
-        storeValue(USER, response);
-        storeUserFullName(USER, USER_FULL_NAME);
+        storeValue(dataStore, response);
     }
 
-    public void assertDefaultTestUserCreated() {
-        GeneratedUser generatedUser = getValueFromSession(USER, Response.class).then()
-                .statusCode(SC_OK)
-                .extract().as(GeneratedUser.class);
+    public void assertUserHasFirstAndLastName(Context dataStore) {
+        String firstName = dataStoreUtils.getFieldValueAsString(dataStore, FIRST_NAME_FIELD);
+        String lastName = dataStoreUtils.getFieldValueAsString(dataStore, LAST_NAME_FIELD);
 
-        assertThat(generatedUser.getResults().get(0)).isNotNull();
-        assertThat(generatedUser.getResults().get(0).getLocation()).isNotNull();
-        assertThat(generatedUser.getResults().get(0).getName().getFirst()).isNotEmpty();
-        assertThat(generatedUser.getResults().get(0).getName().getLast()).isNotEmpty();
-        assertThat(generatedUser.getResults().get(0).getEmail()).isNotEmpty();
-        assertThat(generatedUser.getResults().get(0).getNat()).isNotEmpty();
+        assertThat("Field 'first' is empty! ", firstName.isEmpty(), is(false));
+        assertThat("Field 'last' is empty! ", lastName.isEmpty(), is(false));
     }
 }

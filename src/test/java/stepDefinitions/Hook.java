@@ -1,26 +1,33 @@
 package stepDefinitions;
 
-import com.automation.test.framework.web.driver.Driver;
+import com.automation.test.framework.web.driver.DriverManager;
+import com.automation.test.framework.web.driver.DriverType;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-
-import static com.automation.test.framework.configs.ConfigConstants.DEFAULT_BROWSER;
-import static com.automation.test.framework.configs.ConfigProvider.getConfiguration;
+import org.openqa.selenium.WebDriver;
 
 public class Hook {
-    private static Driver driver = new Driver();
-    private static String defaultBrowser = getConfiguration().getString(DEFAULT_BROWSER);
+//    static DriverManager driverManager;
+//    static Waiters waiters;
+    WebDriver driver;
+    static DriverManager driverManager;
+
 
     @Before
     public static void setup() {
-        driver.initializeDriver(defaultBrowser);
-        driver.initializeActions();
+//        driverManager = DriverFactory.initializeDriver(CHROME);
+//        driverManager.getDriver()
+//                     .manage()
+//                     .window()
+//                     .maximize();
+//        waiters = new Waiters(driverManager);
+        driverManager = new DriverManager(DriverType.CHROME);
     }
 
     @After
     public static void teardown() {
-        if (Driver.driver != null) {
-            Driver.driver.quit();
-        }
+//        driverManager.quitDriver();
+        driverManager.quitDriver();
+
     }
 }
