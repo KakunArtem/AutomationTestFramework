@@ -29,8 +29,8 @@ public class DriverManager {
         driver = driverFactory.initializeDriver(driverType);
         driver.manage().window().maximize();
         wait = new FluentWait<>(driver).withTimeout(Duration.ofMillis(WAIT_MILLS))
-                                       .pollingEvery(Duration.ofMillis(POLLING_MILLS))
-                                       .ignoring(NoSuchElementException.class);
+                .pollingEvery(Duration.ofMillis(POLLING_MILLS))
+                .ignoring(NoSuchElementException.class);
     }
 
     public WebDriver getDriver() {
@@ -43,7 +43,7 @@ public class DriverManager {
         }
     }
 
-    public void loadPage(String url) {
+    public void goToPage(String url) {
         driver.get(url);
     }
 
@@ -51,17 +51,12 @@ public class DriverManager {
         return driver.getPageSource().toLowerCase();
     }
 
-    public WebElement waitForElementToBeDisplayed(WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
     public WebElement waitForElementToBeClickable(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitPageLoad() {
-        wait.until(
-            driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
     }
 
     public void sleep(int seconds) {
@@ -88,16 +83,11 @@ public class DriverManager {
         }
     }
 
-    public void storeElementsToList(By locator, List<WebElement> elements) {
-        elements.addAll(findElements(locator));
-    }
-
     public WebElement getMatchedElement(List<WebElement> elements, String match) {
-        return elements.stream().filter(n -> n.getText().toLowerCase().contains(match.toLowerCase())).findFirst()
-                       .orElseThrow(() -> new NotFoundException(match + " is missing in the result"));
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
+        return elements
+                .stream()
+                .filter(n -> n.getText().toLowerCase().contains(match.toLowerCase()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException(match + " is missing in the list."));
     }
 }

@@ -5,12 +5,12 @@ import org.openqa.selenium.support.FindBy;
 
 public class FacebookCommonElementsPage {
 
-    @FindBy(xpath = "//div/input[2]")
+    @FindBy(xpath = "//div/input[@class='_1frb']")
     public WebElement headerSearchBar;
 
-    @FindBy(xpath = "//div/h1/strong")
+    @FindBy(css = "h1[class='__ck']")
     public WebElement peoplesWithName;
 
-    @FindBy(xpath = "//h1/span/a")
+    @FindBy(css = "a[class='_2nlw _2nlv']")
     public WebElement profileName;
 }

@@ -8,7 +8,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class DriverFactory {
 
-    public WebDriver initializeDriver(DriverType driverType) {
+    WebDriver initializeDriver(DriverType driverType) {
         switch (driverType) {
             case IE:
                 return setupIE();

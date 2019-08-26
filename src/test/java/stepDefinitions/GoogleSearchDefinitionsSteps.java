@@ -17,28 +17,28 @@ import static com.automation.test.framework.api.testContext.TestSession.getValue
 public class GoogleSearchDefinitionsSteps {
     private DriverManager driverManager = new DriverManager();
     private GoogleMainPage googleMainPage =
-        PageFactory.initElements(driverManager.getDriver(), GoogleMainPage.class);
+            PageFactory.initElements(driverManager.getDriver(), GoogleMainPage.class);
     private GoogleResultsPage googleResultsPage =
-        PageFactory.initElements(driverManager.getDriver(), GoogleResultsPage.class);
+            PageFactory.initElements(driverManager.getDriver(), GoogleResultsPage.class);
 
-    private List<WebElement> webElementsList = new ArrayList<>();
-
-    @Then("Go to site: '(.*)'")
+    @Then("Go to page: '(.*)'")
     public void goToSite(String site) {
-        driverManager.loadPage(site);
+        driverManager.goToPage(site);
     }
 
     @And("Search for user`s full name")
     public void searchForUsersFullName() {
-        driverManager.findElement(driverManager.waitForElementToBeDisplayed(googleMainPage.inputTextBar))
-                     .sendKeys(getValueFromSession(USER_FULL_NAME));
-        driverManager.click(driverManager.waitForElementToBeClickable(googleMainPage.searchButton), false);
+        driverManager.findElement(googleMainPage.inputTextBar)
+                .sendKeys(getValueFromSession(USER_FULL_NAME));
+        driverManager.click(
+                driverManager.waitForElementToBeClickable(googleMainPage.searchButton), false);
     }
 
     @Then("Go to '(.*)' from the results page")
-    public void getResultFromList(String page) {
-        driverManager.waitPageLoad();
-        driverManager.storeElementsToList(googleResultsPage.searchResultLinks, webElementsList);
+    public void goToPageFromResults(String page) {
+        List<WebElement> webElementsList = new ArrayList<>();
+        webElementsList.addAll(driverManager.findElements(googleResultsPage.searchResultLinks));
         driverManager.getMatchedElement(webElementsList, page).click();
     }
+
 }
