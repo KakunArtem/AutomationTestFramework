@@ -32,6 +32,7 @@ public class UserAPIDefinitionsSteps {
                 dataStoreUtils.getFieldValueAsString(USER, FIRST_NAME_FIELD).isEmpty(), is(false));
         assertThat("Field 'last' is empty! ",
                 dataStoreUtils.getFieldValueAsString(USER, LAST_NAME_FIELD).isEmpty(), is(false));
+
     }
 
     @And("Save user`s full name")
