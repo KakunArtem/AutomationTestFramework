@@ -1,8 +1,6 @@
 package com.automation.test.framework.web.pages;
 
-import com.automation.test.framework.web.driverV2.WebDriverHome;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.automation.test.framework.web.driver.WebDriverHome;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,28 +15,15 @@ public class GoogleMainPage {
         this.webDriverHome = webDriverHome;
     }
 
-    @FindBy(css = "input[class='gLFyf gsfi']")
-    public WebElement inputTextBar;
-
-    @FindBy(xpath = "(//input[@class='gNO89b'])[2]")
-    public WebElement searchButton;
-
-    @FindBy(xpath = "(//input[@class='gNO89b'])[1]")
-    public WebElement searchButtonInDropDown;
-
-    @FindBy(css = "div[class='aajZCb']")
-    public WebElement suggestionDropdown;
-
-
     public void openURL(String url){
         webDriverHome.goToPage(url);
     }
 
     public void search(String searchRequest){
-        webDriverHome.findElement(inputTextBar)
+        webDriverHome.findElement(GoogleMainPageSelectors.INPUT_TEXT_BAR)
                      .sendKeys(searchRequest);
         webDriverHome.click(
-            webDriverHome.waitForElementToBeClickable(searchButton), false);
+            webDriverHome.waitForElementToBeClickable(GoogleMainPageSelectors.SEARCH_BUTTON), false);
     }
 
 }

@@ -1,6 +1,4 @@
-package com.automation.test.framework.web.driverV2;
-
-import com.automation.test.framework.web.driver.DriverType;
+package com.automation.test.framework.web.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,45 +13,45 @@ import static com.automation.test.framework.configs.ConfigProvider.getConfigurat
 @Service
 public class WebDriverFactory {
 
-    public WebDriver initializeDriver(){
-        DriverType browserType = DriverType.valueOf(getConfiguration().getString(BROWSER_TYPE));
+    public WebDriver initializeDriver() {
+        String browserType = getConfiguration().getString(BROWSER_TYPE);
         String browserVersion = getConfiguration().getString(BROWSER_VERSION);
         switch (browserType) {
-            case IE:
+            case ("IE"):
                 return setupIE(browserVersion);
-            case FIREFOX:
+            case ("Firefox"):
                 return setupFireFox(browserVersion);
-            case CHROME:
+            case ("Chrome"):
                 return setupChrome(browserVersion);
         }
         throw new RuntimeException(browserType + " is unsupported driver type.");
     }
 
-    private WebDriver setupChrome(String version){
-        if(version != null){
+    private WebDriver setupChrome(String version) {
+        if (version != null) {
             WebDriverManager.chromedriver().version(version).setup();
             return new ChromeDriver();
-        }else {
+        } else {
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
         }
     }
 
-    private WebDriver setupFireFox(String version){
-        if(version != null){
+    private WebDriver setupFireFox(String version) {
+        if (version != null) {
             WebDriverManager.firefoxdriver().version(version).setup();
             return new FirefoxDriver();
-        }else {
+        } else {
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
         }
     }
 
-    private WebDriver setupIE(String version){
-        if(version != null){
+    private WebDriver setupIE(String version) {
+        if (version != null) {
             WebDriverManager.iedriver().version(version).setup();
             return new InternetExplorerDriver();
-        }else {
+        } else {
             WebDriverManager.iedriver().setup();
             return new InternetExplorerDriver();
         }

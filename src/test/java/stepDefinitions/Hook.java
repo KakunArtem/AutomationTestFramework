@@ -1,21 +1,29 @@
 package stepDefinitions;
 
-import com.automation.test.framework.web.driver.DriverManager;
-import com.automation.test.framework.web.driver.DriverType;
+import com.automation.test.framework.web.driver.WebDriverHome;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Hook {
-    private static DriverManager driverManager;
+    @Autowired
+    private WebDriverHome webDriverHome;
 
     @Before
-    public static void setup() {
-        driverManager = new DriverManager(DriverType.CHROME);
+    public void setup() {
     }
 
     @After
-    public static void teardown() {
-        driverManager.quitDriver();
+    public void teardown() {
+    }
+
+    @After(value = "@CloseWebDriver", order = 3)
+    public void closeWebDriver() {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+             webDriverHome.closeDriver();
+            }
+        });
     }
 }

@@ -1,7 +1,6 @@
 package com.automation.test.framework.web.pages;
 
-import com.automation.test.framework.web.driverV2.WebDriverHome;
-import org.openqa.selenium.By;
+import com.automation.test.framework.web.driver.WebDriverHome;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,11 +19,9 @@ public class GoogleResultsPage {
         this.webDriverHome = webDriverHome;
     }
 
-    public By searchResultLinks = By.cssSelector("div[class='TbwUpd']");
-
     public List<WebElement> storeSearchResults(){
         List<WebElement> webElementsList = new ArrayList<>();
-        webElementsList.addAll(webDriverHome.findElements(searchResultLinks));
+        webElementsList.addAll(webDriverHome.findElements(GoogleResultsPageSelectors.SEARCH_RESULT_LINKS));
         return webElementsList;
     }
 

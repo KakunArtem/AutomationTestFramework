@@ -1,7 +1,7 @@
-package com.automation.test.framework.web.driverV2;
+package com.automation.test.framework.web.driver;
 
+import com.automation.test.framework.web.utils.Selectors;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NotFoundException;
@@ -27,18 +27,22 @@ public class WebDriverHome {
     private static final int POLLING_SECONDS = 1;
 
     private WebDriver driver;
-    private FluentWait<WebDriver> wait;
-    public Actions actions;
 
     @Autowired
     public WebDriverHome(WebDriver driver) {
         this.driver = driver;
         driver.manage().window().maximize();
-        wait = new FluentWait<>(driver)
-            .withTimeout(Duration.ofSeconds(WAIT_SECONDS))
-            .pollingEvery(Duration.ofSeconds(POLLING_SECONDS))
-            .ignoring(NoSuchElementException.class);
-        actions = new Actions(driver);
+    }
+
+    private FluentWait<WebDriver> waiter() {
+        return new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(WAIT_SECONDS))
+                .pollingEvery(Duration.ofSeconds(POLLING_SECONDS))
+                .ignoring(NoSuchElementException.class);
+    }
+
+    private Actions actions() {
+        return new Actions(driver);
     }
 
     public void closeDriver() {
@@ -46,6 +50,10 @@ public class WebDriverHome {
             driver.quit();
             driver = null;
         }
+    }
+
+    public void closeBrowser(){
+        driver.close();
     }
 
     public void goToPage(String url) {
@@ -72,32 +80,32 @@ public class WebDriverHome {
         try {
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File screenShot =
-                new File("src\\main\\resources\\screenshots " + String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    new File("src\\main\\resources\\screenshots " + String.valueOf(System.currentTimeMillis()) + ".jpg");
             if (screenShot.exists()) {
                 screenShot.delete();
             }
             FileUtils.copyFile(file, screenShot);
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public WebElement waitForElementToBeClickable(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForElementToBeClickable(Selectors selector) {
+        return waiter().until(ExpectedConditions.elementToBeClickable(selector.getLocator()));
     }
 
-    public WebElement findElement(WebElement element) {
+    public WebElement findElement(Selectors selector) {
         try {
-            return wait.until(ExpectedConditions.visibilityOf(element));
+            return waiter().until(ExpectedConditions.presenceOfElementLocated(selector.getLocator()));
         } catch (Exception e) {
             takeScreenshot();
             throw e;
         }
     }
 
-    public List<WebElement> findElements(By by) {
+    public List<WebElement> findElements(Selectors selector) {
         try {
-            return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+            return waiter().until(ExpectedConditions.presenceOfAllElementsLocatedBy(selector.getLocator()));
         } catch (Exception e) {
             takeScreenshot();
             throw e;
@@ -114,10 +122,10 @@ public class WebDriverHome {
 
     public WebElement getMatchedElement(List<WebElement> elements, String match) {
         return elements
-            .stream()
-            .filter(n -> n.getText().toLowerCase().contains(match.toLowerCase()))
-            .findFirst()
-            .orElseThrow(() -> new NotFoundException(match + " is missing in the list."));
+                .stream()
+                .filter(n -> n.getText().toLowerCase().contains(match.toLowerCase()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException(match + " is missing in the list."));
     }
 
 
