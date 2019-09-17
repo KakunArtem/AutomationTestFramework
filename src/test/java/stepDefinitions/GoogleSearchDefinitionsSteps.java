@@ -4,15 +4,15 @@ import com.automation.test.framework.web.pages.GoogleMainPage;
 import com.automation.test.framework.web.pages.GoogleResultsPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class GoogleSearchDefinitionsSteps {
+    private final GoogleMainPage googleMainPage;
+    private final GoogleResultsPage googleResultsPage;
 
-    @Autowired
-    GoogleMainPage googleMainPage;
-
-    @Autowired
-    GoogleResultsPage googleResultsPage;
+    public GoogleSearchDefinitionsSteps(GoogleMainPage page, GoogleResultsPage resultsPage) {
+        googleMainPage = page;
+        googleResultsPage = resultsPage;
+    }
 
     @Then("Go to page: '(.*)'")
     public void goToSite(String site) {

@@ -12,8 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,14 +19,14 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Component
+
 public class WebDriverHome {
     private static final int WAIT_SECONDS = 40;
     private static final int POLLING_SECONDS = 1;
 
     private WebDriver driver;
 
-    @Autowired
+
     public WebDriverHome(WebDriver driver) {
         this.driver = driver;
         driver.manage().window().maximize();

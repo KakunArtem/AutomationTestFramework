@@ -1,16 +1,11 @@
 package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.driver.WebDriverHome;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 public class GoogleMainPage {
 
-    @Autowired
     private WebDriverHome webDriverHome;
 
-    @Autowired
     public GoogleMainPage(WebDriverHome webDriverHome) {
         this.webDriverHome = webDriverHome;
     }
