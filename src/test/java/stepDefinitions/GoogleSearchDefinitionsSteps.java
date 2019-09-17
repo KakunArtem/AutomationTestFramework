@@ -25,6 +25,7 @@ public class GoogleSearchDefinitionsSteps {
         googleMainPage.search("reddit");
     }
 
+
     @Then("Go to '(.*)' from the results page")
     public void goToPageFromResults(String page) {
         googleResultsPage.goToPageFromResult(page);

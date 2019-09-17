@@ -4,9 +4,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources",
-        glue = "stepDefinitions",
-        junit = "--step-notifications",
+        features = {"src/test/resources/features/"},
+        glue = {"stepDefinitions"},
+        tags = {"not @ignored"},
+        junit = {"--step-notifications"},
         plugin = {
             "pretty",
             "json:target/json-report/CucumberTestReport.json"})

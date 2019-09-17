@@ -19,11 +19,7 @@ public class Hook {
 
     @After(value = "@CloseWebDriver", order = 3)
     public void closeWebDriver() {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-             webDriverHome.closeDriver();
-            }
-        });
+        Runtime.getRuntime()
+               .addShutdownHook(new Thread(() -> webDriverHome.closeDriver()));
     }
 }
