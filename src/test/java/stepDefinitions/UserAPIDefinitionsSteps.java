@@ -8,7 +8,11 @@ import static com.automation.test.framework.api.testContext.Context.USER;
 import static com.automation.test.framework.api.testContext.Context.USER_FULL_NAME;
 
 public class UserAPIDefinitionsSteps {
-    private UserService userService = new UserService();
+    private final UserService userService;
+
+    public UserAPIDefinitionsSteps(UserService service) {
+        userService = service;
+    }
 
     @Given("New user with parameters: '(.*)', '(.*)' was created")
     public void createUserWithParameters(String parameters, String format) {

@@ -3,8 +3,7 @@ package com.automation.test.framework.web.pages;
 import com.automation.test.framework.web.driver.WebDriverHome;
 
 public class GoogleMainPage {
-
-    private WebDriverHome webDriverHome;
+    private final WebDriverHome webDriverHome;
 
     public GoogleMainPage(WebDriverHome webDriverHome) {
         this.webDriverHome = webDriverHome;

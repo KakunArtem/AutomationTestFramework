@@ -2,8 +2,6 @@ package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.utils.Selectors;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public enum FacebookCommonElementsPageSelectors implements Selectors {
     HEADER_SEARCH_BAR(By.xpath("//div/input[@class='_1frb']")),

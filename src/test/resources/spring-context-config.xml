@@ -10,13 +10,23 @@
 
     <context:component-scan base-package="com.automation.test.framework"/>
 
+    <bean id="userService" class="com.automation.test.framework.api.service.UserService">
+    </bean>
+
+    <bean id="userRestClient" class="com.automation.test.framework.api.client.UserRestClient"/>
+    <bean id="dataStoreUtils" class="com.automation.test.framework.api.utils.DataStoreUtils"/>
+
     <bean id="webDriverFactory" class="com.automation.test.framework.web.driver.WebDriverFactory"/>
 
-    <bean id="webDriver" class="org.openqa.selenium.WebDriver" factory-bean="webDriverFactory"
-          factory-method="initializeDriver"/>
+    <!--    <bean id="webDriver" class="org.openqa.selenium.WebDriver" factory-bean="webDriverFactory"-->
+    <!--          factory-method="initializeDriver" destroy-method="quit"/>-->
+
+    <!--    <bean id="webDriverHome" class="com.automation.test.framework.web.driver.WebDriverHome" destroy-method="closeDriver">-->
+    <!--        <constructor-arg name="driver" ref="webDriver" />-->
+    <!--    </bean>-->
 
     <bean id="webDriverHome" class="com.automation.test.framework.web.driver.WebDriverHome">
-        <constructor-arg name="driver" ref="webDriver"/>
+        <constructor-arg name="webDriverFactory" ref="webDriverFactory"/>
     </bean>
 
     <bean id="googleMainPage" class="com.automation.test.framework.web.pages.GoogleMainPage">

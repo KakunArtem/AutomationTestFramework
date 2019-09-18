@@ -30,5 +30,4 @@ public class GoogleSearchDefinitionsSteps {
     public void goToPageFromResults(String page) {
         googleResultsPage.goToPageFromResult(page);
     }
-
 }

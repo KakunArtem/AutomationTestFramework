@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GoogleResultsPage {
 
-    private WebDriverHome webDriverHome;
+    private final WebDriverHome webDriverHome;
 
     public GoogleResultsPage(WebDriverHome webDriverHome) {
         this.webDriverHome = webDriverHome;

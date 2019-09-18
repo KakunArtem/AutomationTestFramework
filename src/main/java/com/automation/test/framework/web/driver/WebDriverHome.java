@@ -19,17 +19,31 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
 public class WebDriverHome {
     private static final int WAIT_SECONDS = 40;
     private static final int POLLING_SECONDS = 1;
 
     private WebDriver driver;
+    private final WebDriverFactory webDriverFactory;
 
+//    public WebDriverHome(WebDriver driver){
+//        this.driver = driver;
+//        driver.manage().window().maximize();
+//    }
 
-    public WebDriverHome(WebDriver driver) {
-        this.driver = driver;
-        driver.manage().window().maximize();
+    public WebDriverHome(WebDriverFactory webDriverFactory) {
+        this.webDriverFactory = webDriverFactory;
+    }
+
+    public void initDriver(String browserType, String browserVersion){
+       this.driver =  webDriverFactory.initializeDriver(browserType, browserVersion);
+       driver.manage()
+             .window()
+             .maximize();
+    }
+
+    public boolean driverIsRunning() {
+        return driver != null;
     }
 
     private FluentWait<WebDriver> waiter() {

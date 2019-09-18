@@ -2,10 +2,8 @@ package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.driver.WebDriverHome;
 
-
 public class FacebookCommonElementsPage {
-
-    private WebDriverHome webDriverHome;
+    private final WebDriverHome webDriverHome;
 
     public FacebookCommonElementsPage (WebDriverHome webDriverHome) {
         this.webDriverHome = webDriverHome;

@@ -5,16 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import static com.automation.test.framework.configs.ConfigConstants.BROWSER_TYPE;
-import static com.automation.test.framework.configs.ConfigConstants.BROWSER_VERSION;
-import static com.automation.test.framework.configs.ConfigProvider.getConfiguration;
-
-
 public class WebDriverFactory {
-    private static final String browserType = getConfiguration().getString(BROWSER_TYPE);
-    private static final String browserVersion = getConfiguration().getString(BROWSER_VERSION);
 
-    public WebDriver initializeDriver() {
+    WebDriver initializeDriver(String browserType, String browserVersion) {
         switch (browserType) {
             case ("IE"):
                 return setupIE(browserVersion);
