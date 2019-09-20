@@ -2,44 +2,38 @@ package com.automation.test.framework.web.driver;
 
 import com.automation.test.framework.web.utils.Selectors;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.*;
+import org.openqa.selenium.remote.http.W3CHttpCommandCodec;
+import org.openqa.selenium.remote.http.W3CHttpResponseCodec;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.net.URL;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class WebDriverHome {
     private static final int WAIT_SECONDS = 40;
     private static final int POLLING_SECONDS = 1;
 
+    @Autowired
+    private WebDriverFactory webDriverFactory;
+
     private WebDriver driver;
-    private final WebDriverFactory webDriverFactory;
 
-//    public WebDriverHome(WebDriver driver){
-//        this.driver = driver;
-//        driver.manage().window().maximize();
-//    }
-
-    public WebDriverHome(WebDriverFactory webDriverFactory) {
-        this.webDriverFactory = webDriverFactory;
-    }
-
-    public void initDriver(String browserType, String browserVersion){
-       this.driver =  webDriverFactory.initializeDriver(browserType, browserVersion);
-       driver.manage()
-             .window()
-             .maximize();
+    public void setupWebDriver(String browser) {
+        this.driver = webDriverFactory.driverFactory(browser);
+        this.driver.manage().window().maximize();
     }
 
     public boolean driverIsRunning() {
@@ -53,18 +47,18 @@ public class WebDriverHome {
                 .ignoring(NoSuchElementException.class);
     }
 
-    private Actions actions() {
+    public Actions actions() {
         return new Actions(driver);
     }
 
-    public void closeDriver() {
+    public void quitDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;
         }
     }
 
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.close();
     }
 
@@ -92,7 +86,7 @@ public class WebDriverHome {
         try {
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File screenShot =
-                    new File("src\\main\\resources\\screenshots " + String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    new File("src\\main\\resources\\screenshots " + System.currentTimeMillis() + ".jpg");
             if (screenShot.exists()) {
                 screenShot.delete();
             }

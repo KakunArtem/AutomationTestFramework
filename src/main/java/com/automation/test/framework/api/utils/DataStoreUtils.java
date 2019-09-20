@@ -5,11 +5,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 import static com.automation.test.framework.api.testContext.TestSession.getValueFromSession;
-
+@Component
 public class DataStoreUtils {
 
     public String convertDataStoreToString(Context dataStore) {

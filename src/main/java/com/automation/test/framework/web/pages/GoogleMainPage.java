@@ -1,23 +1,23 @@
 package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.driver.WebDriverHome;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GoogleMainPage {
-    private final WebDriverHome webDriverHome;
+    @Autowired
+    private WebDriverHome webDriverHome;
 
-    public GoogleMainPage(WebDriverHome webDriverHome) {
-        this.webDriverHome = webDriverHome;
-    }
-
-    public void openURL(String url){
+    public void openURL(String url) {
         webDriverHome.goToPage(url);
     }
 
-    public void search(String searchRequest){
+    public void search(String searchRequest) {
         webDriverHome.findElement(GoogleMainPageSelectors.INPUT_TEXT_BAR)
-                     .sendKeys(searchRequest);
+                .sendKeys(searchRequest);
         webDriverHome.click(
-            webDriverHome.waitForElementToBeClickable(GoogleMainPageSelectors.SEARCH_BUTTON), false);
+                webDriverHome.waitForElementToBeClickable(GoogleMainPageSelectors.SEARCH_BUTTON), false);
     }
 
 }

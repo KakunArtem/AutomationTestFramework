@@ -8,11 +8,11 @@ public enum GoogleResultsPageSelectors implements Selectors {
 
     private By locator;
 
-    GoogleResultsPageSelectors (By locator){
+    GoogleResultsPageSelectors(By locator) {
         this.locator = locator;
     }
 
-    public By getLocator(){
+    public By getLocator() {
         return locator;
     }
 

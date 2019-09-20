@@ -10,7 +10,7 @@ public enum FacebookCommonElementsPageSelectors implements Selectors {
 
     private By locator;
 
-    FacebookCommonElementsPageSelectors (By locator){
+    FacebookCommonElementsPageSelectors(By locator) {
         this.locator = locator;
     }
 

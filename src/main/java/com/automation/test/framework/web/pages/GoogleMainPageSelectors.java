@@ -2,10 +2,8 @@ package com.automation.test.framework.web.pages;
 
 import com.automation.test.framework.web.utils.Selectors;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-public enum  GoogleMainPageSelectors implements Selectors {
+public enum GoogleMainPageSelectors implements Selectors {
 
     INPUT_TEXT_BAR(By.cssSelector("input[class='gLFyf gsfi']")),
 
@@ -17,11 +15,11 @@ public enum  GoogleMainPageSelectors implements Selectors {
 
     private By locator;
 
-    GoogleMainPageSelectors (By locator){
+    GoogleMainPageSelectors(By locator) {
         this.locator = locator;
     }
 
-    public By getLocator(){
+    public By getLocator() {
         return locator;
     }
 }

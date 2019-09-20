@@ -1,11 +1,13 @@
 package com.automation.test.framework.api.client;
 
 import io.restassured.response.Response;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Component
 public class UserRestClient extends BaseRestClient {
     private static final String INCLUDE_FIELDS_PARAM = "inc";
     private static final String EXCLUDE_FIELDS_PARAM = "exc";

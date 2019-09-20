@@ -1,61 +1,33 @@
 package com.automation.test.framework.web.driver;
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class WebDriverFactory {
+@Component
+class WebDriverFactory {
+    @Autowired
+    private ChromeOptions chromeOptions;
 
-    WebDriver initializeDriver(String browserType, String browserVersion) {
+    @Autowired
+    private BeanFactory beanFactory;
+
+    WebDriver driverFactory(String browserType) {
         switch (browserType) {
-            case ("IE"):
-                return setupIE(browserVersion);
-            case ("Firefox"):
-                return setupFireFox(browserVersion);
             case ("Chrome"):
-                return setupChrome(browserVersion);
-        }
-        throw new RuntimeException(browserType + " is unsupported driver type.");
-    }
-
-    private WebDriver setupChrome(String version) {
-        if (version != null) {
-            WebDriverManager.chromedriver()
-                            .version(version)
-                            .setup();
-            return new ChromeDriver();
-        } else {
-            WebDriverManager.chromedriver()
-                            .setup();
-            return new ChromeDriver();
+                return setupChrome();
+            default:
+                throw new RuntimeException(browserType + " is unsupported driver type.");
+                //todo rest of browsers
         }
     }
 
-    private WebDriver setupFireFox(String version) {
-        if (version != null) {
-            WebDriverManager.firefoxdriver()
-                            .version(version)
-                            .setup();
-            return new FirefoxDriver();
-        } else {
-            WebDriverManager.firefoxdriver()
-                            .setup();
-            return new FirefoxDriver();
-        }
-    }
-
-    private WebDriver setupIE(String version) {
-        if (version != null) {
-            WebDriverManager.iedriver()
-                            .version(version)
-                            .setup();
-            return new InternetExplorerDriver();
-        } else {
-            WebDriverManager.iedriver()
-                            .setup();
-            return new InternetExplorerDriver();
-        }
+    private WebDriver setupChrome() {
+        chromeOptions.addArguments("--disable-extensions");
+        return beanFactory.getBean(ChromeDriver.class, chromeOptions);
     }
 
 }
