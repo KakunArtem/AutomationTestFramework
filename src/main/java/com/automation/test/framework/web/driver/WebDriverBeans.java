@@ -11,7 +11,7 @@ import static com.automation.test.framework.configs.ConfigConstants.CHROME_BROWS
 import static com.automation.test.framework.configs.ConfigProvider.getConfiguration;
 
 @Component
-public class WebDriverBeans {
+class WebDriverBeans {
     @Bean
     @Scope("prototype")
     @Lazy
