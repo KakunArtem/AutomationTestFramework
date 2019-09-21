@@ -24,3 +24,7 @@ Feature: Create a random user and Search for this person's full name in Google
   @Avengers-3
   Scenario: Check that browser don`t start
     Given I print something
+
+#    If you had an error during the test launch,
+#    please, go to edit Configurations -> Glue
+#    and change value to "stepDefinitions com.foreach.cuke"

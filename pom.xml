@@ -80,13 +80,6 @@
             <version>${cucumber.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-jvm</artifactId>-->
-<!--            <version>${cucumber.version}</version>-->
-<!--        </dependency>-->
-
-
         <!--Rest assured dependency-->
         <dependency>
             <groupId>io.rest-assured</groupId>
