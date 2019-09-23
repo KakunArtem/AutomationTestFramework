@@ -23,6 +23,10 @@ public class Hook {
 
     @After(value = "@QuitWebDriver", order = 3)
     public void closeWebDriver() {
-        Runtime.getRuntime().addShutdownHook(new Thread(webDriverHome::quitDriver));
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                webDriverHome.quitDriver();
+            }
+        });
     }
 }

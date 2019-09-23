@@ -1,7 +1,7 @@
 @Avengers
 Feature: Create a random user and Search for this person's full name in Google
 
-  @Avengers-1 @CloseWebDriver @InitWebDriver
+  @Avengers-1 @QuitWebDriver @InitWebDriver
   Scenario: Create a user and search his name on Google. Validate that Facebook has a profile for this user name
     Given New user with parameters: 'name', 'pretty' was created
     And Store user`s full name
@@ -11,7 +11,7 @@ Feature: Create a random user and Search for this person's full name in Google
 #    Then Go to 'Facebook.com' from the results page
 #    And As an unregistered user verify that current 'Facebook.com' page contains user`s full name
 
-  @Avengers-2 @CloseWebDriver @InitWebDriver
+  @Avengers-2 @QuitWebDriver @InitWebDriver
   Scenario: Create something
     Given New user with parameters: 'name', 'pretty' was created
     And Store user`s full name
