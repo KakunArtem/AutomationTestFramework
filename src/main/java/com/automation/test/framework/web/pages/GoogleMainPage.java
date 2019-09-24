@@ -16,6 +16,7 @@ public class GoogleMainPage {
     public void search(String searchRequest) {
         webDriverHome.findElement(GoogleMainPageSelectors.INPUT_TEXT_BAR)
                 .sendKeys(searchRequest);
+        webDriverHome.takeScreenshot();
         webDriverHome.click(
                 webDriverHome.waitForElementToBeClickable(GoogleMainPageSelectors.SEARCH_BUTTON), false);
     }

@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import com.automation.test.framework.web.driver.WebDriverHome;
+import com.automation.test.framework.web.utils.IOUtils;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,10 @@ public class Hook {
     private static final String browserType = getConfiguration().getString(BROWSER_TYPE);
 
     @Autowired
-    WebDriverHome webDriverHome;
+    private IOUtils ioUtils;
+
+    @Autowired
+    private WebDriverHome webDriverHome;
 
     @Before(value = "@InitWebDriver", order = 0)
     public void startBrowser() {
@@ -28,5 +33,12 @@ public class Hook {
                 webDriverHome.quitDriver();
             }
         });
+    }
+
+    @After(value = "@CleanScreenshots", order = 2)
+    public void cleanScreenshots(Scenario scenario){
+        if(!scenario.isFailed()) {
+            ioUtils.cleanDirectory();
+        }
     }
 }
