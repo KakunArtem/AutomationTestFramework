@@ -86,7 +86,7 @@ public class WebDriverHome {
         try {
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File screenshot =
-                    new File("src\\main\\resources\\screenshots\\ " + System.currentTimeMillis() + ".jpg");
+                new File("src\\main\\resources\\screenshots\\ " + System.currentTimeMillis() + ".jpg");
             if (screenshot.exists()) {
                 screenshot.delete();
             }

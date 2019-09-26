@@ -3,8 +3,8 @@ package com.automation.test.framework.web.driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,7 +13,7 @@ class WebDriverFactory {
     private ChromeOptions chromeOptions;
 
     @Autowired
-    private BeanFactory beanFactory;
+    private ApplicationContext applicationContext;
 
     WebDriver driverFactory(String browserType) {
         switch (browserType) {
@@ -27,7 +27,7 @@ class WebDriverFactory {
 
     private WebDriver setupChrome() {
         chromeOptions.addArguments("--disable-extensions");
-        return beanFactory.getBean(ChromeDriver.class, chromeOptions);
+        return applicationContext.getBean(ChromeDriver.class, chromeOptions);
     }
 
 }
