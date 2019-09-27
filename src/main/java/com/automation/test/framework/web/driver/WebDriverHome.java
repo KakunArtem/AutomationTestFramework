@@ -40,7 +40,7 @@ public class WebDriverHome {
         return driver != null;
     }
 
-    private FluentWait<WebDriver> waiter() {
+    private FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(WAIT_SECONDS))
                 .pollingEvery(Duration.ofSeconds(POLLING_SECONDS))
@@ -97,12 +97,12 @@ public class WebDriverHome {
     }
 
     public WebElement waitForElementToBeClickable(Selectors selector) {
-        return waiter().until(ExpectedConditions.elementToBeClickable(selector.getLocator()));
+        return getFluentWait().until(ExpectedConditions.elementToBeClickable(selector.getLocator()));
     }
 
     public WebElement findElement(Selectors selector) {
         try {
-            return waiter().until(ExpectedConditions.presenceOfElementLocated(selector.getLocator()));
+            return getFluentWait().until(ExpectedConditions.presenceOfElementLocated(selector.getLocator()));
         } catch (Exception e) {
             takeScreenshot();
             throw e;
@@ -111,7 +111,7 @@ public class WebDriverHome {
 
     public List<WebElement> findElements(Selectors selector) {
         try {
-            return waiter().until(ExpectedConditions.presenceOfAllElementsLocatedBy(selector.getLocator()));
+            return getFluentWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(selector.getLocator()));
         } catch (Exception e) {
             takeScreenshot();
             throw e;

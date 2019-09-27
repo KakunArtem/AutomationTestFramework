@@ -19,6 +19,6 @@ public class UserAPIDefinitionsSteps {
 
     @And("Store user`s full name")
     public void saveUserFullName() {
-        userService.storeUserFullName(USER_FULL_NAME);
+        userService.storeUserFullName(USER, USER_FULL_NAME);
     }
 }

@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static com.automation.test.framework.api.testContext.Context.USER;
 import static com.automation.test.framework.api.testContext.TestSession.storeValue;
 @Component
 public class UserService {
@@ -24,13 +23,13 @@ public class UserService {
         storeValue(storage, response);
     }
 
-    public void storeUserFullName(Context storage){
+    public void storeUserFullName(Context userStorage, Context fulNameStorage){
         String fullName = new StringBuilder()
-                .append(dataStoreUtils.getFieldValueAsString(USER, FIRST_NAME_FIELD))
+                .append(dataStoreUtils.getFieldValueAsString(userStorage, FIRST_NAME_FIELD))
                 .append(" ")
-                .append(dataStoreUtils.getFieldValueAsString(USER, LAST_NAME_FIELD))
+                .append(dataStoreUtils.getFieldValueAsString(userStorage, LAST_NAME_FIELD))
                 .toString();
-        storeValue(storage, fullName);
+        storeValue(fulNameStorage, fullName);
     }
 
 }

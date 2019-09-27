@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CommonSteps {
 
     @Autowired
-    WebDriverHome webDriverHome;
+    private WebDriverHome webDriverHome;
 
     @When("I print something")
     public void soutSomething() {
