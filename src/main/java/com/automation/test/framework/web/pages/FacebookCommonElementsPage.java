@@ -14,7 +14,7 @@ public class FacebookCommonElementsPage {
     }
 
     public Boolean pageContainsText(String text) {
-        return webDriverHome.getPageSource().contains(text);
+        return webDriverHome.getPageSource().contains(text.toLowerCase());
     }
 
 }
