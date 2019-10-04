@@ -19,13 +19,13 @@ public class AppConfig {
     @Bean
     @Scope("prototype")
     @Lazy
-    protected ChromeDriver chromeDriver(ChromeOptions chromeOptions) {
+    public ChromeDriver chromeDriver(ChromeOptions chromeOptions) {
         System.setProperty("webdriver.chrome.driver", getConfiguration().getString(CHROME_BROWSER));
         return new ChromeDriver(chromeOptions);
     }
 
     @Bean
-    protected ChromeOptions chromeOptions() {
+    public ChromeOptions chromeOptions() {
         return new ChromeOptions();
     }
 }

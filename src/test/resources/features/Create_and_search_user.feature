@@ -7,9 +7,9 @@ Feature: Create a random user and Search for this person's full name in Google
     And Store user`s full name
     Then Go to page: 'https://www.google.com/'
     And Search for user`s full name
-    Then Close Driver
-#    Then Go to 'Facebook.com' from the results page
-#    And As an unregistered user verify that current 'Facebook.com' page contains user`s full name
+#    Then Close Driver
+    Then Go to 'Facebook.com' from the results page
+    And As an unregistered user verify that current 'Facebook.com' page contains user`s full name
 
   @Avengers-2 @QuitWebDriver @InitWebDriver
   Scenario: Create something
