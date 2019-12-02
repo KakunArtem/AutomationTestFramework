@@ -26,7 +26,7 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                        -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm --plugin json:target/json-report/CucumberTestReport.json"
                     </argLine>
                     <systemProperties>
                         <property>
@@ -100,29 +100,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>net.masterthought</groupId>-->
-<!--                <artifactId>maven-cucumber-reporting</artifactId>-->
-<!--                <version>4.6.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>cucumber-reports</id>-->
-<!--                        <phase>post-integration-test</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <projectName>Automation Test Framework</projectName>-->
-<!--                            <outputDirectory>target/json-report</outputDirectory>-->
-<!--                            <jsonFiles>-->
-<!--                                <param>**/*.json</param>-->
-<!--                            </jsonFiles>-->
-<!--                            <classifications>-->
-<!--                            </classifications>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 
@@ -167,6 +144,11 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>4.10.0</version>
         </dependency>
 
         <!--Rest assured dependency-->
